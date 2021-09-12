@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
-    [SerializeField] PlayerData data;
+    public PlayerData data;
 
     private float inputX;
     private float inputZ;
@@ -16,15 +16,15 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded;
 
+
     void Start()
     {
-
+        drag = data.groundDrag;
     }
 
     void Update()
     {
         GetInput();
-        SetDrag();
     }
 
     private void FixedUpdate()
@@ -32,14 +32,13 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
 
         if (isGrounded && inputY) Jump();
+
+        if (!isGrounded) IncreaseGravity();
     }
 
-    void SetDrag()
+    void IncreaseGravity()
     {
-        if (isGrounded) drag = data.groundDrag;
-        else drag = data.airDrag;
-
-        rb.drag = drag;
+        if (rb.velocity.y < data.gravity * data.forceMultiplier) rb.AddForce(Vector3.down * data.gravity * data.forceMultiplier, ForceMode.Force);
     }
 
     void Jump()
@@ -57,15 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        float speed;
-
-        if (isGrounded) speed = data.groundSpeed;
-        else speed = data.airSpeed;
-
         Vector3 moveVec = transform.forward * inputX + transform.right * inputZ;
 
         moveVec.Normalize();
 
-        rb.AddForce(moveVec * speed * data.forceMultiplier, ForceMode.Acceleration);
+        rb.AddForce(moveVec * data.groundSpeed * data.forceMultiplier, ForceMode.Acceleration);
     }
 }

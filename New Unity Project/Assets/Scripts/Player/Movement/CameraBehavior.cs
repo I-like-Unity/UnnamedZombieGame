@@ -12,7 +12,8 @@ public class CameraBehavior : MonoBehaviour
 
     [SerializeField] private Transform playerTransform;
 
-    private float xRotation = 0f;
+    public float xRotation = 0f;
+    public float yRotation;
 
     private void Start()
     {
@@ -33,6 +34,8 @@ public class CameraBehavior : MonoBehaviour
     {
         float x = Input.GetAxis("Mouse X") * data.mouseSensitifty * Time.deltaTime;
         float y = Input.GetAxis("Mouse Y") * data.mouseSensitifty * Time.deltaTime;
+
+        yRotation = y;
 
         xRotation -= y;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

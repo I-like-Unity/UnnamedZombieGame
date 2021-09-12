@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject
 {
-    public enum PlayerState { idle, walking, falling, flying};
+    public enum PlayerState { idle, walking, falling, flying, driving};
     public PlayerState playerState;
 
     public float groundSpeed;
@@ -18,6 +18,8 @@ public class PlayerData : ScriptableObject
 
     public float groundDrag;
     public float airDrag;
+
+    public float gravity;
 
     public LayerMask groundLayer;
 
