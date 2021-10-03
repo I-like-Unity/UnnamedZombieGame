@@ -41,6 +41,14 @@ public class CarController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         isBreaking = Input.GetKey(KeyCode.Space);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Camera.main.GetComponent<CarCamera>().enabled = false;
+            Camera.main.GetComponent<CameraBehavior>().enabled = true;
+
+            Camera.main.GetComponent<CameraChange>().data.cameraState = CameraData.CameraState.player;
+        } 
     }
 
     private void HandleMotor()
@@ -85,5 +93,16 @@ public class CarController : MonoBehaviour
         rot.eulerAngles -= new Vector3(0f, 0f, 90f);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Camera.main.GetComponent<CarCamera>().enabled = true;
+            Camera.main.GetComponent<CameraBehavior>().enabled = false;
+
+            Camera.main.GetComponent<CameraChange>().data.cameraState = CameraData.CameraState.car;
+        }
     }
 }

@@ -6,7 +6,7 @@ public class WeaponHandler : MonoBehaviour
 {
     public List<Weapon> weapons = new List<Weapon>();
 
-    private List<GameObject> unlockedWeapons = new List<GameObject>();
+    public List<GameObject> unlockedWeapons = new List<GameObject>();
 
     private int curWeaponIndex;
 
