@@ -15,11 +15,11 @@ MonoBehaviour:
   playerState: 0
   groundSpeed: 10
   airSpeed: 2
-  jumpHeight: 1
+  jumpHeight: 10
   forceMultiplier: 10
   groundDrag: 6
   airDrag: 0
-  gravity: 5
+  gravity: 8
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
