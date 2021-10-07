@@ -12,18 +12,27 @@ public class WeaponHandler : MonoBehaviour
 
     [SerializeField] private Transform weaponTransform;
 
-    void Start()
+    private void Start()
+    {
+        UpdateWeapon();
+    }
+
+    void UpdateWeapon()
     {
         foreach (Weapon w in weapons)
         {
+            print(w.unlocked);
+
             if (w.unlocked)
             {
-                GameObject curObj = Instantiate(w.model, weaponTransform.position, Quaternion.identity, weaponTransform);
+                GameObject curObj = Instantiate(w.model, weaponTransform.position + w.placement, Quaternion.identity, weaponTransform);
 
                 unlockedWeapons.Add(curObj);
 
                 curObj.AddComponent<WeaponScript>();
                 curObj.GetComponent<WeaponScript>().weapon = w;
+
+                if (w.rotateModel) curObj.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
             }
         }
     }

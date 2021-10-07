@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 11400000, guid: 42dc45834eab72c4b8f7f9e29df44e13, type: 2}
+  - {fileID: 11400000, guid: bda642bd876cabc4ca3c133624a10df5, type: 2}
   unlockedWeapons: []
   weaponTransform: {fileID: 727587204}
 --- !u!1 &772223935

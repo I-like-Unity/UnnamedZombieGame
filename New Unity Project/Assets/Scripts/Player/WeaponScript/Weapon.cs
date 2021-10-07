@@ -8,6 +8,10 @@ public class Weapon : ScriptableObject
 {
     public GameObject model;
 
+    public Vector3 placement;
+
+    public bool rotateModel;
+
     public bool unlocked;
 
     public enum ShootingMode { Single, Burst, Automatic};
